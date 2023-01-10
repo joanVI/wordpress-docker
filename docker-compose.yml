@@ -13,7 +13,7 @@ services:
       WORDPRESS_DB_HOST: db
       WORDPRESS_DB_NAME: wpdatabase
       WORDPRESS_DB_USER: root
-      WORDPRESS_DB_PASSWORD: C@s@s1m@r00
+      WORDPRESS_DB_PASSWORD: 
     depends_on:
       - db
     links:
@@ -34,8 +34,7 @@ services:
       - ./mysql:/var/lib/mysql
     environment:
         MYSQL_DATABASE: wpdatabase
-        MYSQL_ROOT_PASSWORD: C@s@s1m@r00
-
+        MYSQL_ROOT_PASSWORD: 
 
 
 
