@@ -1,0 +1,43 @@
+version: '3.7'
+
+services:
+  wp:
+    image: wordpress:latest
+    ports:
+       - 80:80
+    volumes:
+      - ./uploads.ini:/usr/local/etc/php/conf.d/uploads.ini
+      - ./html:/var/www/html 
+      - ./seg:/var/www/seg
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: wpdatabase
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: C@s@s1m@r00
+    depends_on:
+      - db
+    links:
+      - db
+
+
+  db:
+    image: mysql:latest
+    ports:
+      - 3306:3306 
+    command: [
+        '--default_authentication_plugin=mysql_native_password',
+        '--character-set-server=utf8mb4',
+        '--collation-server=utf8mb4_unicode_ci'
+    ]
+    volumes:
+      - ./data:/docker-entrypoint-initdb.d
+      - ./mysql:/var/lib/mysql
+    environment:
+        MYSQL_DATABASE: wpdatabase
+        MYSQL_ROOT_PASSWORD: C@s@s1m@r00
+
+
+
+
+volumes:
+  db_data:
